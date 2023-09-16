@@ -16,6 +16,14 @@ export function sendP (chan) {
   }
 }
 
+export function updateP (chan) {
+  return function (f) {
+    return function () {
+      chan.update(f)
+    }
+  }
+}
+
 export function subscribe (chan) {
   return chan
 }

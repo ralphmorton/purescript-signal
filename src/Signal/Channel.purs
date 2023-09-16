@@ -1,6 +1,7 @@
 module Signal.Channel
   ( channel
   , send
+  , update
   , subscribe
   , Channel
   ) where
@@ -24,6 +25,12 @@ foreign import sendP :: forall a. (Channel a) -> a -> Effect Unit
 -- |Sends a value to a given channel.
 send :: forall a. Channel a -> a -> Effect Unit
 send = sendP
+
+foreign import updateP :: forall a. (Channel a) -> (a -> a) -> Effect Unit
+
+-- |Updates a value in a given channel.
+update :: forall a. Channel a -> (a -> a) -> Effect Unit
+update = updateP
 
 -- |Takes a channel and returns a signal of the values sent to it.
 foreign import subscribe :: forall a. Channel a -> Signal a

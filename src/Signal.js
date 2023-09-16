@@ -16,6 +16,13 @@ function make (initial) {
       subs.forEach(function (sub) {
         sub(newval)
       })
+    },
+    update: function (f) {
+      const newval = f(val)
+      val = newval
+      subs.forEach(function (sub) {
+        sub(newval)
+      })
     }
   }
   return sig
